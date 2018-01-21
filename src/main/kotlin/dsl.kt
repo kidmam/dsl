@@ -5,6 +5,9 @@ import kotlinx.html.table
 import kotlinx.html.td
 import kotlinx.html.tr
 
+import java.time.Period
+import java.time.LocalDate
+
 fun main(args: Array<String>) {
     println(createAnotherTable())
 
@@ -16,7 +19,18 @@ fun main(args: Array<String>) {
     }
     println(s)
 
+    println(1.days.ago)
+    println(1.days.fromNow)
 }
+
+val Int.days: Period
+    get() = Period.ofDays(this)
+
+val Period.ago: LocalDate
+    get() = LocalDate.now() - this
+
+val Period.fromNow: LocalDate
+    get() = LocalDate.now() + this
 
 fun buildString(
         //builderAction: (StringBuilder) -> Unit
